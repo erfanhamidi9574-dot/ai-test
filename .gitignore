@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.env.*
+
+# Node
+node_modules/
+.next/
+dist/
+build/
+
+# ML / local artifacts
+checkpoints/
+*.bin
+*.safetensors
+*.gguf
+wandb/
+.cache/
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Colab exports
+ai-workspace-colab/

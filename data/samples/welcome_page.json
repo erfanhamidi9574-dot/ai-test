@@ -1,0 +1,36 @@
+{
+  "id": "sample-page-product-spec",
+  "title": "Product Spec — AI Workspace",
+  "blocks": [
+    {
+      "id": "b1",
+      "type": "heading",
+      "content": "Goal"
+    },
+    {
+      "id": "b2",
+      "type": "paragraph",
+      "content": "Build a Notion-like workspace where AI can edit blocks, answer from workspace knowledge, and run a browser agent that writes results back as pages."
+    },
+    {
+      "id": "b3",
+      "type": "heading",
+      "content": "Core features"
+    },
+    {
+      "id": "b4",
+      "type": "paragraph",
+      "content": "Pages and blocks. AI rewrite and summarize. RAG over pages. Browser agent with goto/click/extract. Citations back to sources."
+    },
+    {
+      "id": "b5",
+      "type": "heading",
+      "content": "Non-goals (month 1)"
+    },
+    {
+      "id": "b6",
+      "type": "paragraph",
+      "content": "Realtime multiplayer, full database views, mobile apps, training foundation models from scratch."
+    }
+  ]
+}

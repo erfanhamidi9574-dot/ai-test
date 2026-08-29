@@ -1,0 +1,16 @@
+{
+  "cases": [
+    {
+      "id": "rewrite_clarity",
+      "task": "rewrite",
+      "input": "make page load fast and ai answers good",
+      "must_include_concepts": ["performance", "answer quality"]
+    },
+    {
+      "id": "rag_citation",
+      "task": "ask_workspace",
+      "question": "What are month-1 non-goals?",
+      "expect_source_page": "sample-page-product-spec"
+    }
+  ]
+}
