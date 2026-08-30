@@ -36,14 +36,14 @@ MVP یکپارچه              ← Lesson 12
 - یاد می‌گیری: GPU در Colab، کلون ریپو، نصب پکیج، ذخیره روی Drive
 - خروجی: یک cell که `torch.cuda.is_available()` را چاپ می‌کند
 
-**بعد از Lesson 00 برو Lesson 01. رد نکن.**
+**Lesson 00 تمام ✓ — برو Lesson 01.**
 
 ---
 
 ## فاز ۱ — مغز AI (هفته ۱) — فقط Colab
 
-### Lesson 01 — اولین تماس با LLM
-- فایل: `notebooks/01_llm_inference.ipynb`
+### Lesson 01 — اولین تماس با LLM ← **الان اینجا**
+- فایل: [`notebooks/01_llm_inference.ipynb`](../notebooks/01_llm_inference.ipynb)
 - مفاهیم: tokenizer، chat template، temperature، max_tokens، system prompt
 - تمرین: ۳ prompt برای «بازنویسی بلاک Notion» بنویس و مقایسه کن
 - اتصال محصول: هستهٔ `packages/ai-core` بعداً همین الگو را دارد
@@ -150,8 +150,8 @@ MVP یکپارچه              ← Lesson 12
 
 ## الان چه کار کنی؟
 
-1. [`notebooks/00_colab_setup.ipynb`](../notebooks/00_colab_setup.ipynb) را در Colab باز کن  
-   (GitHub → فایل → Open in Colab، یا آپلود دستی)  
-2. بعد از اتمام، بگو **«درس 00 تمام»** تا با هم Lesson 01 را جلو ببریم.
+1. [`notebooks/01_llm_inference.ipynb`](../notebooks/01_llm_inference.ipynb) را در Colab باز کن  
+2. همه cellها را اجرا کن + تمرین ۳ prompt  
+3. بعد از اتمام بگو **«درس 01 تمام»**
 
 رد کردن درس‌ها = سوراخ در محصول نهایی.

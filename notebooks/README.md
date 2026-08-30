@@ -2,8 +2,8 @@
 
 | File | Status |
 |------|--------|
-| `00_colab_setup.ipynb` | Ready — start here |
-| `01_llm_inference.ipynb` | Unlocks after Lesson 00 |
+| `00_colab_setup.ipynb` | Done — Lesson 00 |
+| `01_llm_inference.ipynb` | **Ready — start here** |
 | `02_structured_output.ipynb` | After 01 |
 | `03_dataset_for_workspace.ipynb` | After 02 |
 | `04_lora_finetune.ipynb` | After 03 |
