@@ -11,7 +11,7 @@ Notion-like **AI Workspace** with an **AI Browser Agent** — built while learni
 | Knowledge | RAG over your pages + uploaded docs |
 | Browser Agent | AI that opens pages, clicks, extracts, and reports back into the workspace |
 
-This repo is both a **learning curriculum** and the **product codebase**. You do not skip ahead: each lesson unlocks the next piece of the product.
+This repo is both a **learning curriculum** (8 deep lessons) and the **product codebase**. You do not skip ahead: each lesson unlocks the next piece of the product.
 
 ## How to learn (rules)
 
@@ -52,4 +52,4 @@ ai-workspace/
 
 ## Status
 
-Curriculum + scaffolds are in place. Product features land lesson-by-lesson.
+Curriculum: **8 deep lessons** (see `docs/LEARNING_PATH.md`). Lesson 01 covers LLM + prompt + JSON in one pass.

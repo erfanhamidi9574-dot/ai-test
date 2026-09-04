@@ -1,157 +1,156 @@
-# مسیر یادگیری — AI Workspace (گام‌به‌گام با Colab)
+# مسیر یادگیری — AI Workspace (عمیق، کم‌درس)
 
-هدف نهایی: یک **AI Workspace شبیه Notion** + **AI Browser Agent**.  
-با یک ماه وقت، به نسخهٔ MVP قابل‌دمو می‌رسی؛ عمق پژوهشی را عمداً کنار می‌گذاریم.
+هدف نهایی: **AI Workspace شبیه Notion** + **AI Browser Agent**.  
+با **۸ درس** (نه ۱۳+) به MVP می‌رسی — هر درس = چند ساعت کار عمیق، نه یک مفهوم سطحی.
 
 ## قانون طلایی
 
 | کجا | چه کار می‌کنی |
 |------|----------------|
-| **Colab** | inference، LoRA، RAG، eval، prompt |
-| **همین ریپو (لوکال)** | UI ورک‌اسپیس، FastAPI، Playwright Browser Agent |
+| **Colab** | مدل، LoRA، RAG، eval، prompt |
+| **همین ریپو (لوکال)** | UI، FastAPI، Playwright Browser Agent |
 
-هر درس: **چرا → کد → تمرین → اتصال به محصول**.
-
----
-
-## نقشهٔ محصول → درس‌ها
-
-```
-صفحات و بلاک‌ها          ← Lesson 08+ (apps/web)
-AI روی سند               ← Lesson 02–04
-RAG روی دانش ورک‌اسپیس   ← Lesson 05–06
-مدل سفارشی دامنه         ← Lesson 03–04
-API محصول                ← Lesson 07
-Browser Agent            ← Lesson 09–10
-ارزیابی و سرو            ← Lesson 06, 11
-MVP یکپارچه              ← Lesson 12
-```
+هر درس: **چرا (تئوری) → کد → تمرین → اتصال به محصول → journal**.
 
 ---
 
-## فاز ۰ — آماده‌سازی (روز ۱)
+## نقشهٔ ۸ درس → محصول
 
-### Lesson 00 — محیط Colab و ریپو
+| # | درس | خروجی محصول | زمان تقریبی |
+|---|-----|-------------|-------------|
+| **00** | Setup Colab | محیط آماده | ۱–۲ ساعت |
+| **01** | LLM + Prompt + JSON | دکمه Rewrite/Summarize + قرارداد ویرایش بلاک | ۴–۶ ساعت |
+| **02** | Dataset + LoRA | مدل با لحن/فرمت ورک‌اسپیس خودت | ۴–۶ ساعت |
+| **03** | RAG | «Ask workspace» با citation | ۴–۶ ساعت |
+| **04** | FastAPI | `/ai/complete`, `/ai/rag`, `/pages` | ۳–۵ ساعت |
+| **05** | UI ورک‌اسپیس | صفحه، بلاک، AI panel | ۴–۶ ساعت |
+| **06** | Browser Agent | URL → خلاصه → صفحه Research | ۴–۶ ساعت |
+| **07** | Eval + MVP Demo | دمو یکپارچه + README | ۳–۴ ساعت |
+
+```
+صفحات/بلاک‌ها     ← 04, 05
+AI روی سند        ← 01, 02
+RAG               ← 03, 04
+Browser Agent     ← 06
+کیفیت/دمو         ← 07
+```
+
+---
+
+## Lesson 00 — Setup ✓
+
 - فایل: [`notebooks/00_colab_setup.ipynb`](../notebooks/00_colab_setup.ipynb)
-- یاد می‌گیری: GPU در Colab، کلون ریپو، نصب پکیج، ذخیره روی Drive
-- خروجی: یک cell که `torch.cuda.is_available()` را چاپ می‌کند
-
-**Lesson 00 تمام ✓ — برو Lesson 01.**
+- GPU، پکیج‌ها، Drive، tokenizer smoke test
 
 ---
 
-## فاز ۱ — مغز AI (هفته ۱) — فقط Colab
+## Lesson 01 — LLM، Prompt Engineering، Structured Output ← **الان**
 
-### Lesson 01 — اولین تماس با LLM ← **الان اینجا**
 - فایل: [`notebooks/01_llm_inference.ipynb`](../notebooks/01_llm_inference.ipynb)
-- مفاهیم: tokenizer، chat template، temperature، max_tokens، system prompt
-- تمرین: ۳ prompt برای «بازنویسی بلاک Notion» بنویس و مقایسه کن
-- اتصال محصول: هستهٔ `packages/ai-core` بعداً همین الگو را دارد
+- **یک درس عمیق** که قبلاً ۳ درس جدا بود (inference + prompt + JSON)
 
-### Lesson 02 — Structured output برای Workspace
-- فایل: `notebooks/02_structured_output.ipynb`
-- مفاهیم: JSON schema، tool/function calling سبک، ویرایش بلاک به‌صورت `{action, block_id, content}`
-- تمرین: مدل را وادار کن خروجی فقط JSON معتبر بدهد
-- اتصال محصول: دستورات AI روی صفحه (rewrite / summarize / split)
+### بخش‌های درس
+1. **مدل چطور کار می‌کند** — next-token prediction، autoregressive
+2. **Tokenizer** — token، BPE، هزینه/latency، context window
+3. **Chat template** — system/user/assistant، فرمت Qwen
+4. **Generation** — temperature، top_p، max_tokens، stop
+5. **Prompt engineering** — system prompt، few-shot، anti-patterns
+6. **Structured output** — JSON schema، parse، retry
+7. **قرارداد محصول** — `{action, block_id, content}`
+8. **اندازه‌گیری** — tokens/sec، VRAM
 
-### Lesson 03 — دیتاست دامنهٔ Workspace
-- فایل: `notebooks/03_dataset_for_workspace.ipynb`
-- مفاهیم: instruction tuning format، کیفیت داده > کمیت
-- تمرین: ۵۰ نمونه JSONL برای کارهای ورک‌اسپیس (خلاصه، عنوان، تبدیل bullet، استخراج action item)
-- داده نمونه: `data/samples/`
+### تمرین‌ها
+- ۳ prompt برای rewrite + مقایسه
+- ۱ prompt برای summarize
+- ۱ prompt برای JSON معتبر (rewrite/split action)
+- یادداشت در `docs/journal.md`
 
-### Lesson 04 — LoRA fine-tune روی Colab
-- فایل: `notebooks/04_lora_finetune.ipynb`
-- مفاهیم: LoRA/PEFT، overfitting، checkpoint، مقایسه قبل/بعد
-- تمرین: مدل کوچک (مثلاً Qwen2.5-1.5B یا معادل) را LoRA کن و ۱۰ سؤال را ارزیابی کن
-- اتصال محصول: مدل سفارشی برای لحن/فرمت ورک‌اسپیس خودت
+**بعد از Lesson 01 → Lesson 02 (LoRA).**
 
 ---
 
-## فاز ۲ — دانش ورک‌اسپیس (هفته ۲) — Colab + شروع API
+## Lesson 02 — Dataset + LoRA (ادغام دیتاست + fine-tune)
 
-### Lesson 05 — Embeddings و Chunking
-- فایل: `notebooks/05_embeddings_chunking.ipynb`
-- مفاهیم: chunk size، overlap، metadata (page_id, block_id)
-- تمرین: چند صفحهٔ نمونه را chunk کن و retrieval دستی بساز
-
-### Lesson 06 — RAG برای Notion-like pages
-- فایل: `notebooks/06_rag_workspace.ipynb`
-- مفاهیم: retrieve → augment prompt → generate → cite
-- تمرین: سؤال بپرس؛ جواب باید `sources: [page_id]` برگرداند
-- اتصال محصول: «Ask workspace»
-
-### Lesson 07 — FastAPI به‌عنوان مغز محصول
-- فایل: `notebooks/07_api_contract.ipynb` + کد در `apps/api`
-- مفاهیم: قرارداد API (`/ai/complete`, `/ai/rag`, `/pages`)
-- تمرین: لوکال API را بالا بیاور و از Colab یا curl صدا بزن
-- **از اینجا بخشی از کار لوکال است**
+- فایل: `notebooks/02_lora_workspace.ipynb` *(بعد از اتمام 01 ساخته می‌شود)*
+- instruction format (JSONL)، کیفیت > کمیت، ۵۰+ نمونه workspace
+- LoRA/PEFT روی Colab، checkpoint روی Drive
+- قبل/بعد روی ۱۰ سناریوی واقعی
+- اتصال: مدل سفارشی در `packages/ai-core`
 
 ---
 
-## فاز ۳ — محصول Workspace (هفته ۳) — لوکال سنگین‌تر
+## Lesson 03 — RAG (ادغام embedding + retrieval + generate)
 
-### Lesson 08 — UI شبیه Notion (حداقلی)
-- مسیر: `apps/web`
-- مفاهیم: صفحه، بلاک متن، sidebar، AI side panel
-- تمرین: یک صفحه بساز، انتخاب متن → «Rewrite with AI»
-
-### Lesson 09 — Browser Agent — مبانی
-- فایل: `notebooks/09_browser_agent_basics.ipynb` + `packages/browser-agent`
-- مفاهیم: ابزارها (goto, click, type, extract)، حلقهٔ observe→think→act
-- **توجه:** اجرای واقعی Browser Agent روی ماشین لوکال با Playwright است؛ Colab فقط طراحی agent loop و mock را تمرین می‌کند
-
-### Lesson 10 — Browser Agent → Workspace
-- مسیر: `packages/browser-agent` + API
-- مفاهیم: نتیجهٔ مرورگر را به‌صورت صفحه/بلاک جدید در ورک‌اسپیس ذخیره کن
-- تمرین: «این URL را بخوان و خلاصه را در صفحه Research بگذار»
+- فایل: `notebooks/03_rag_workspace.ipynb`
+- chunking، metadata (page_id, block_id)، embedding
+- retrieve → augment → generate → cite
+- تمرین: «Ask workspace» با `sources: [page_id]`
+- اتصال: endpoint `/ai/rag` در API
 
 ---
 
-## فاز ۴ — یکپارچه‌سازی و صنعتی‌سازی (هفته ۴)
+## Lesson 04 — FastAPI محصول
 
-### Lesson 11 — Eval، هزینه، latency
-- فایل: `notebooks/11_eval_and_cost.ipynb`
-- مفاهیم: eval set ثابت، hallucination روی RAG، اندازه‌گیری token/latency
-- تمرین: harness برای ۱۰ سناریوی ورک‌اسپیس
+- فایل: `notebooks/04_api_product.ipynb` + [`apps/api`](../apps/api)
+- قرارداد REST، in-memory → بعداً DB
+- Colab یا curl → API لوکال
+- wiring به `packages/ai-core`
 
-### Lesson 12 — MVP Demo Day
-- چک‌لیست:
+---
+
+## Lesson 05 — UI شبیه Notion
+
+- مسیر: [`apps/web`](../apps/web)
+- sidebar، صفحه، بلاک، انتخاب متن → AI panel
+- Rewrite / Summarize / Ask workspace
+
+---
+
+## Lesson 06 — Browser Agent → Workspace
+
+- فایل: `notebooks/06_browser_agent.ipynb` + [`packages/browser-agent`](../packages/browser-agent)
+- mock در Colab، Playwright واقعی لوکال
+- observe → think → act، tools: goto/click/extract
+- نتیجه → صفحه Research جدید
+
+---
+
+## Lesson 07 — Eval + MVP Demo Day
+
+- فایل: `notebooks/07_eval_mvp.ipynb`
+- eval set ثابت (`data/evals/`)، hallucination RAG، token/latency
+- چک‌لیست MVP:
   - [ ] ساخت/ویرایش صفحه
-  - [ ] AI rewrite / summarize روی بلاک
+  - [ ] AI rewrite / summarize
   - [ ] Ask workspace با citation
-  - [ ] یک جریان Browser Agent → صفحه جدید
-  - [ ] README دمو + اسکرین‌شات/ویدیو کوتاه
+  - [ ] Browser Agent → صفحه جدید
+  - [ ] README دمو
 
 ---
 
-## مدل‌های پیشنهادی روی Colab (رایگان/T4)
+## مدل‌های پیشنهادی (Colab T4)
 
-برای شروع سبک بمان:
-
-| کار | پیشنهاد |
-|-----|---------|
-| Inference آموزشی | `Qwen/Qwen2.5-1.5B-Instruct` |
-| LoRA | همان ۱.۵B یا ۳B اگر GPU آمد |
+| کار | مدل |
+|-----|-----|
+| Inference + LoRA | `Qwen/Qwen2.5-1.5B-Instruct` |
 | Embedding | `sentence-transformers/all-MiniLM-L6-v2` |
-| بعداً کیفیت بالاتر | API مدل بزرگ (اختیاری) کنار مدل لوکال |
+| کیفیت بالاتر (اختیاری) | API مدل بزرگ کنار مدل لوکال |
 
 ---
 
-## ریتم پیشنهادی روزانه (۲–۴ ساعت)
+## ریتم هر درس (۴–۶ ساعت)
 
-1. درس روز را در Colab باز کن  
-2. همه cellها را اجرا کن  
-3. تمرین‌ها را تمام کن  
-4. اگر درس گفت: کد را به `packages/` یا `apps/` منتقل کن  
-5. یک خط در `docs/journal.md` بنویس: امروز چه شکست/یادگرفتی
+1. markdown «چرا» را **بخوان** (۱۵–۳۰ دقیقه)
+2. همه cellها را **اجرا** کن
+3. تمرین‌ها را **تمام** کن — بدون تمرین درس تمام نیست
+4. اگر گفت sync به ریپو → `packages/` یا `apps/`
+5. یک پارagraph در `docs/journal.md`
 
 ---
 
 ## الان چه کار کنی؟
 
-1. [`notebooks/01_llm_inference.ipynb`](../notebooks/01_llm_inference.ipynb) را در Colab باز کن  
-2. همه cellها را اجرا کن + تمرین ۳ prompt  
-3. بعد از اتمام بگو **«درس 01 تمام»**
-
-رد کردن درس‌ها = سوراخ در محصول نهایی.
+1. [`notebooks/01_llm_inference.ipynb`](../notebooks/01_llm_inference.ipynb) را در Colab باز کن
+2. **همه بخش‌ها** را بخوان و اجرا کن (این درس طولانی‌تر است — عادی است)
+3. تمرین‌ها + JSON structured output را تمام کن
+4. بگو **«درس 01 تمام»**

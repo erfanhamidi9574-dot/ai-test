@@ -3,7 +3,7 @@
 ## One-liner
 A **Notion-like workspace** where AI edits your pages, answers from your knowledge, and can **browse the web** as an agent that writes results back into the workspace.
 
-## MVP (end of ~1 month learning path)
+## MVP (end of 8 deep lessons, ~3–4 weeks)
 
 Must demo:
 

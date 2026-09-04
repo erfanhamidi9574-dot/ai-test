@@ -1,16 +1,15 @@
-# Placeholder notebooks — full lessons unlock one-by-one as you finish the previous.
+# Notebooks — ۸ درس عمیق
 
-| File | Status |
-|------|--------|
-| `00_colab_setup.ipynb` | Done — Lesson 00 |
-| `01_llm_inference.ipynb` | **Ready — start here** |
-| `02_structured_output.ipynb` | After 01 |
-| `03_dataset_for_workspace.ipynb` | After 02 |
-| `04_lora_finetune.ipynb` | After 03 |
-| `05_embeddings_chunking.ipynb` | After 04 |
-| `06_rag_workspace.ipynb` | After 05 |
-| `07_api_contract.ipynb` | After 06 |
-| `09_browser_agent_basics.ipynb` | After UI lesson |
-| `11_eval_and_cost.ipynb` | Near MVP |
+| # | File | Status | پوشش |
+|---|------|--------|------|
+| 00 | `00_colab_setup.ipynb` | Done | GPU, Drive, packages |
+| 01 | `01_llm_inference.ipynb` | **Ready — start here** | LLM + prompt + JSON (عمیق) |
+| 02 | `02_lora_workspace.ipynb` | After 01 | Dataset + LoRA |
+| 03 | `03_rag_workspace.ipynb` | After 02 | RAG end-to-end |
+| 04 | `04_api_product.ipynb` | After 03 | FastAPI wiring |
+| 06 | `06_browser_agent.ipynb` | After 05 | Agent loop + Playwright |
+| 07 | `07_eval_mvp.ipynb` | After 06 | Eval + MVP demo |
 
-Open in Colab: upload the `.ipynb` or use "Open in Colab" from GitHub once pushed.
+Lesson 05 = UI in `apps/web` (no notebook).
+
+Open in Colab: upload `.ipynb` or GitHub → Open in Colab.
